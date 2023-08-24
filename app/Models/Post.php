@@ -2,61 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\File;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Post
+class Post extends Model
 {
 
-    public $title;
-    public $exerpt;
-    public $date;
-    public $slug;
+    protected $guarded = [];
 
-    public $body;
-
-    public function __construct($title, $exerpt, $date, $slug, $body)
+    public function category()
     {
-        $this->title = $title;
-        $this->exerpt = $exerpt;
-        $this->date = $date;
-        $this->slug = $slug;
-        $this->body = $body;
+        return $this->belongsTo(Category::class);
     }
 
-    public static function all()
-    {
-
-        return cache()->rememberForever('posts.all', function () {
-            return collect(File::files(resource_path("/posts")))
-                ->map(fn($file) => YamlFrontMatter::parseFile($file))
-                ->map(
-                    fn($document) => new Post(
-                        $document->title,
-                        $document->exerpt,
-                        $document->date,
-                        $document->slug,
-                        $document->body()
-
-                    )
-                )
-                ->sortByDesc('date');
-
-        });
-    }
-
-    /**
-     * Summary of find
-     * @param mixed $slug
-     * @return void
-     */
-    public static function find($slug)
-    {
-        return static::all()->firstWhere('slug', $slug);
-
-    }
-
-
-
+    use HasFactory;
+    // Alternative way to specify key for finding route (currently in web.php: "post:slug")
+    // public function getRouteKey()
+    // {
+    //     return 'slug';
+    // }
 }
+

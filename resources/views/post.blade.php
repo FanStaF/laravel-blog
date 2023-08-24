@@ -1,19 +1,20 @@
-<!doctype html>
+@extends('layout')
 
-
-<title>FanStaF Learns Laravel</title>
-<link rel="stylesheet" href="/app.css">
-
-<body>
+@section('content')
     <article>
         <h1>
-            <?= $post->title; ?>
+            {{ $post->title }}
         </h1>
 
+        <p>
+            By <a href="#">FanStaF</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+        </p>
+
         <div>
-            <?= $post->body; ?>
+            {{ $post->body }}
         </div>
     </article>
-
-    <a href="/">Go Back</a>
-</body>
+    <p>
+        <a href="/">Go Back</a>
+    </p>
+@endsection
