@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->text('exerpt');
-            $table->text('body');
+            $table->longText('body');
             $table->string('slug')->unique();
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
