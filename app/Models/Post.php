@@ -7,20 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-
+    
+    use HasFactory;
     protected $guarded = [];
+    protected $with = ['category', 'author'];
+
+    public function scopeFilter($query, array $filters) {
+        $query->when($filters['search'] ?? false, fn($query, $search) => 
+            $query
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%'));
+    }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    use HasFactory;
-    // Alternative way to specify key for finding route (currently in web.php: "post:slug")
-    // public function getRouteKey()
-    // {
-    //     return 'slug';
-    // }
+
 
     public function author()
     {
