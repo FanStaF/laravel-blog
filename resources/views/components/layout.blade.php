@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 <style>
     html {
@@ -34,11 +34,22 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</span>
-                    <form method="POST" action="/logout" class="text-xs font-bold text-blue-500 ml-6">
-                        @csrf
-                        <button type="submit">Log Out</button>
-                    </form>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</button>
+                        </x-slot>
+
+                        @admin('admin')
+                            <x-dropdown-item href="/admin/posts" :active="request()->routeIs('all-posts')">Dashboard</x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('create-post')">New Post</x-dropdown-item>
+                        @endadmin
+                        <x-dropdown-item href="#" x-data="{}"
+                            @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+
+                        <form method="POST" action="/logout" class="hidden" id="logout-form">
+                            @csrf
+                        </form>
+                    </x-dropdown>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="mx-4  text-xs font-bold uppercase">Log In</a>
@@ -51,7 +62,7 @@
             </div>
         </nav>
 
-        <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
+        <main class="max-w-6xl mx-auto mt-6 lg:mt-12 space-y-6">
 
             {{ $slot }}
 

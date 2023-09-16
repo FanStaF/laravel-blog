@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+
     public function index()
     {
-
         return view('posts.index', [
             'posts' => Post::latest()
                 ->filter(request(['search', 'category', 'author']))
@@ -24,4 +25,6 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
+
+   
 }
