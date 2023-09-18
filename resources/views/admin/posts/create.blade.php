@@ -1,7 +1,7 @@
 <x-layout>
     <x-setting heading="Publish new post">
 
-        <x-form.post :post="$post"/>
+        <x-form.post :post="null"/>
         {{-- <form action="/admin/posts" method="post" enctype="multipart/form-data">
             @csrf
 
