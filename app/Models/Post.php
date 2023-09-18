@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
+    protected $casts = [
+        'published_at' => 'datetime'
+    ];
+
     use HasFactory;
+
     protected $guarded = [];
     protected $with = ['category', 'author'];
 

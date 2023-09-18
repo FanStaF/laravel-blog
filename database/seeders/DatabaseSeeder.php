@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,16 +18,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Category::factory(5)->create();
-        Post::factory(20)->create();
+        Post::factory(2)->create([
+            'published_at' => now()->add(1, 'day')
+        ]);
+        Post::factory(2)->create([
+            'published_at' => now()->subtract(1, 'day')
+        ]);
+
+
         Comment::factory(5)->create();
         // User::factory(10)->create();
 
-        User::create([
-            'name' => 'Staffan',
-            'username' => 'FanStaF',
-            'email' => 'staffan@gmail.com',
-            'password' => bcrypt('password')
-
-        ]);
     }
 }

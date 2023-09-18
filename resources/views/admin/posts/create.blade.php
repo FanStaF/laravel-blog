@@ -1,6 +1,8 @@
 <x-layout>
     <x-setting heading="Publish new post">
-        <form action="/admin/posts" method="post" enctype="multipart/form-data">
+
+        <x-form.post :post="$post"/>
+        {{-- <form action="/admin/posts" method="post" enctype="multipart/form-data">
             @csrf
 
             <x-form.input name="title" />
@@ -26,9 +28,16 @@
                 <x-form.error name="category" />
 
             </x-form.field>
+            <div>
+                <div class="flex space-x-8">
+                    <x-form.button name="button" value="Publish" />
+                    <x-form.button name="button" value="Save Draft" />
+                    <x-form.button name="button" value="Schedule" />
+                </div>
 
-            <x-form.button>Publish</x-form.button>
-        </form>
+
+            </div>
+        </form> --}}
 
     </x-setting>
 </x-layout>

@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RssFeedController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,5 @@ Route::middleware('can:admin')->group(function () {
 //     Route::patch("admin/posts/{post:id}", [AdminPostController::class, 'update'])->name('update-post');
 //     Route::delete("admin/posts/{post:id}", [AdminPostController::class, 'destroy'])->name('update-post');
 });
+
+Route::get('rss', RssFeedController::class)->name('rss-feed');

@@ -50,8 +50,16 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Published
+                                                @if (!$post->published_at)
+                                                    class="w-full px-20 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-300 text-red-800">
+                                                    Draft
+                                                @elseif ($post->published_at > Illuminate\Support\Carbon::now())
+                                                    class="px-4 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Sceduled {{ $post->published_at->format('M d Y H:i') }}
+                                                @elseif ($post->published_at < Illuminate\Support\Carbon::now())
+                                                    class="px-4 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Published {{ $post->published_at->format('M d Y H:i')  }}
+                                                @endif
                                             </span>
                                         </td>
 
@@ -63,7 +71,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <form method="POST" action="/admin/posts/{{ $post->id }}">
                                                 @csrf
-                                                @method("DELETE")
+                                                @method('DELETE')
                                                 <button class="text-red-400 hover:text-red-600">Delete</button>
                                             </form>
                                         </td>

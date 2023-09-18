@@ -11,7 +11,6 @@
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2">
                     <x-category-button :category="$post->category" />
-
                 </div>
 
                 <div class="mt-4">
@@ -21,9 +20,8 @@
                         </a>
                     </h1>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
-                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
-                    </span>
+                    <x-publish-date-and-view-count :post="$post" />
+
                 </div>
             </header>
 

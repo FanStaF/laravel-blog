@@ -20,9 +20,7 @@
                         </a>
                     </h1>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
-                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
-                    </span>
+                    <x-publish-date-and-view-count :post="$post" />
                 </div>
             </header>
 
@@ -35,7 +33,7 @@
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
                         <h5 class="font-bold">
-                            <a href="/?author={{ $post->author->username}}"> {{ $post->author->name }} </a>
+                            <a href="/?author={{ $post->author->username }}"> {{ $post->author->name }} </a>
                         </h5>
                     </div>
                 </div>
