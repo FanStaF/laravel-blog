@@ -48,4 +48,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    // Users that follow this author
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'author_follower', 'author_id', 'follower_id')->withTimestamps();
+    }
+
+    // Authors that this user follows
+    public function followed_authors()
+    {
+        return $this->belongsToMany(User::class, 'author_follower', 'follower_id', 'author_id')->withTimestamps();
+    }
 }

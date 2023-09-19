@@ -39,6 +39,8 @@
                             <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</button>
                         </x-slot>
 
+                        <x-dropdown-item href="/feed" :active="request()->routeIs('feed')">My Feed</x-dropdown-item>
+
                         @admin('admin')
                             <x-dropdown-item href="/admin/posts" :active="request()->routeIs('all-posts')">Dashboard</x-dropdown-item>
                             <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('create-post')">New Post</x-dropdown-item>

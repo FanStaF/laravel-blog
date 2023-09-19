@@ -1,17 +1,22 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\Mail\NewPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RssFeedController;
 use App\Http\Controllers\SessionsController;
+use App\Mail\NewPost;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('feed', [PostController::class, 'feed'])->name('feed')->middleware('auth');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
@@ -27,7 +32,7 @@ Route::post('newsletter', NewsletterController::class);
 
 Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');
-//     Replaces all below
+    //     Replaces all below
 //     Route::get('admin/posts', [AdminPostController::class, 'index'])->name('all-posts');
 //     Route::get('admin/posts/create', [AdminPostController::class, 'create'])->name('create-post');
 //     Route::post('admin/posts', [AdminPostController::class, 'store']);
@@ -37,3 +42,7 @@ Route::middleware('can:admin')->group(function () {
 });
 
 Route::get('rss', RssFeedController::class)->name('rss-feed');
+
+
+Route::post('/follow', [FollowController::class, 'follow'])->name('follow');
+Route::post('/unfollow', [FollowController::class, 'unfollow'])->name('unfollow');

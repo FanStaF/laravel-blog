@@ -14,7 +14,7 @@
                     <x-form.input name="email" type="email" autocomplete="username" />
                     <x-form.input name="password" type="password" autocomplete="password" />
 
-                    <x-form.button>Submit</x-form.button>
+                    <x-form.button />
 
                     {{-- @if ($errors->any())
                     <ul>

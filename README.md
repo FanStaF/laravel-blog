@@ -18,5 +18,8 @@ Of course we only had time in the Laravel From Scratch series to review the esse
 4. Record/Track and display the "views_count" for each post.
     - Done
 5. Allow registered users to "follow" certain authors. When they publish a new post, an email should be delivered to all followers.
+    - Users can now follow/unfollow authors and view posts from followed authors on their 'My Feed'-page.
+    - Email is sent to all followers of the post author when a new post is posted
+    - TODO handel scheduled posts. Email is always and only send when a new post is created.
 6. Allow registered users to "bookmark" certain posts that they enjoyed. Then display their bookmarks in a corresponding settings page.
 7. Add an account page to update your username and upload an avatar for your profile.

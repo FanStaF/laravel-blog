@@ -10,10 +10,6 @@ class Post extends Model
 
     use HasFactory;
 
-    protected $attributes = [
-        'view_count' => 0
-    ];
-    
     protected $casts = [
         'published_at' => 'datetime'
     ];

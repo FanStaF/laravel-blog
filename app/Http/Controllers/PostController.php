@@ -29,5 +29,14 @@ class PostController extends Controller
         ]);
     }
 
+    public function feed()
+    {
+        $followed_authors = auth()->user()->followed_authors()->pluck('id');
 
+        return view('posts.index', [
+            'posts' => Post::latest()->whereDate('published_at', '<=', now())
+                ->whereIn('user_id', $followed_authors)
+                ->paginate()->withQueryString()
+        ]);
+    }
 }

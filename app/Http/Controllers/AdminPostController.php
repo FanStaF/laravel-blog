@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Mail\NewPostController;
 use App\Models\Post;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class AdminPostController extends Controller
         $post = Post::create(array_merge($this->validatePost(), [
             'thumbnail' => request()->file('thumbnail')->store('thumbnails')
         ]));
+
+        new NewPostController($post);
 
         return $this->publish_draft_or_schedule($post);
 
