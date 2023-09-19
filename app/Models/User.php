@@ -52,12 +52,17 @@ class User extends Authenticatable
     // Users that follow this author
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'author_follower', 'author_id', 'follower_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'author_follower', 'author_id', 'follower_id');
     }
 
     // Authors that this user follows
     public function followed_authors()
     {
-        return $this->belongsToMany(User::class, 'author_follower', 'follower_id', 'author_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'author_follower', 'follower_id', 'author_id');
+    }
+
+    public function bookmarks()
+    {
+        return $this->belongsToMany(Post::class, 'bookmarked-post_user', 'user_id', 'post_id');
     }
 }

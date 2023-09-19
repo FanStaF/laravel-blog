@@ -22,4 +22,5 @@ Of course we only had time in the Laravel From Scratch series to review the esse
     - Email is sent to all followers of the post author when a new post is posted
     - TODO handel scheduled posts. Email is always and only send when a new post is created.
 6. Allow registered users to "bookmark" certain posts that they enjoyed. Then display their bookmarks in a corresponding settings page.
+    - Added bookmarks
 7. Add an account page to update your username and upload an avatar for your profile.

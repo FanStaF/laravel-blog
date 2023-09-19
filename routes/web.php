@@ -14,9 +14,10 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('feed', [PostController::class, 'feed'])->name('feed')->middleware('auth');
+Route::get('/posts/feed', [PostController::class, 'feed'])->name('feed')->middleware('auth');
+Route::get('/posts/bookmarks', [PostController::class, 'bookmarks'])->name('bookmarks')->middleware('auth');
+Route::post('/posts/bookmarks', [PostController::class, 'bookmark'])->name('bookmark');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);

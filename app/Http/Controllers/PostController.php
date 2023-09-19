@@ -39,4 +39,30 @@ class PostController extends Controller
                 ->paginate()->withQueryString()
         ]);
     }
+
+    public function bookmark()
+    {
+
+        request()->validate([
+            'post_id' => ['required', Rule::exists('posts', 'id')]
+        ]);
+        $post_id = request('post_id');
+
+        if( auth()->user()->bookmarks->contains($post_id) ){
+            auth()->user()->bookmarks()->detach($post_id);
+            return back()->with('success', 'You removed the bookmark');
+        }
+
+        auth()->user()->bookmarks()->attach($post_id);
+        return back()->with('success', 'You have bookmarked ' . Post::firstWhere('id', $post_id)->value('title'));
+    }
+
+    public function bookmarks()
+    {
+        // dd(auth()->user()->bookmarks()->get());
+        return view('posts.index', [
+            'posts' => auth()->user()->bookmarks()
+                ->paginate()->withQueryString()
+        ]);
+    }
 }

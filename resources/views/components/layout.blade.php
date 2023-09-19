@@ -39,14 +39,23 @@
                             <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</button>
                         </x-slot>
 
-                        <x-dropdown-item href="/feed" :active="request()->routeIs('feed')">My Feed</x-dropdown-item>
+                        <x-dropdown-item href="/posts/feed" :active="request()->routeIs('feed')">
+                            My Feed
+                        </x-dropdown-item>
+                        <x-dropdown-item href="/posts/bookmarks" :active="request()->routeIs('bookmarks')">
+                            Bookmarks
+                        </x-dropdown-item>
 
                         @admin('admin')
-                            <x-dropdown-item href="/admin/posts" :active="request()->routeIs('all-posts')">Dashboard</x-dropdown-item>
-                            <x-dropdown-item href="/admin/posts/create" :active="request()->routeIs('create-post')">New Post</x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts" :active="request()->routeIs('all-posts')">
+                                Dashboard
+                            </x-dropdown-item>
                         @endadmin
+
                         <x-dropdown-item href="#" x-data="{}"
-                            @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+                            @click.prevent="document.querySelector('#logout-form').submit()">
+                            Log Out
+                        </x-dropdown-item>
 
                         <form method="POST" action="/logout" class="hidden" id="logout-form">
                             @csrf
