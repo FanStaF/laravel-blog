@@ -1,7 +1,8 @@
 ## About Laravel-blog
 
 Following allong as Jeffrey Way teaches Laravel 8 from Scratch. Completed all 70 
-episodes and commited after each section, starting from section 5.
+episodes and commited after each section, starting from section 5. Also completed the
+7 extra tasks suggested at the end of the course.
 
 ### Further Ideas
 Of course we only had time in the Laravel From Scratch series to review the essentials of a blogging platform. You can certainly take this many steps further. Here are some quick ideas that you might play with.
