@@ -3,7 +3,7 @@
 <x-panel>
     <article class="flex space-x-4">
         <div class="flex-shrink-0">
-            <img src="https://i.pravatar.cc/60?u={{ $comment->author->id }}" alt="avatar" width="60" height="60"
+            <img src="{{ asset('storage/' . $comment->author->avatar) }}" alt="User Avatar" width="60" height="60"
                 class="rounded-xl">
         </div>
         <div>

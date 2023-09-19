@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => 'flex items-center text-sm']) }}>
-    <img src="/images/lary-avatar.svg" alt="Lary avatar">
+    <img src="{{ asset('storage/' . $post->author->avatar)}}" alt="User Avatar" class="max-h-20 mx-w-20 rounded-lg">
     <div class="ml-3 flex flex-col items-center">
         <h4 class="font-bold">
             <a href="/?author={{ $post->author->username }}"> {{ $post->author->name }} </a>

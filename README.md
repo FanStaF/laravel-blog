@@ -24,3 +24,4 @@ Of course we only had time in the Laravel From Scratch series to review the esse
 6. Allow registered users to "bookmark" certain posts that they enjoyed. Then display their bookmarks in a corresponding settings page.
     - Added bookmarks
 7. Add an account page to update your username and upload an avatar for your profile.
+    - Done!

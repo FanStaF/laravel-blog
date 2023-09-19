@@ -52,6 +52,9 @@
                             </x-dropdown-item>
                         @endadmin
 
+                        <x-dropdown-item href="/profile/{{ auth()->user()->username }}" :active="request()->routeIs('profile')">
+                            My Profile
+                        </x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}"
                             @click.prevent="document.querySelector('#logout-form').submit()">
                             Log Out
